@@ -19,24 +19,26 @@
 
 renderButtons();
 
-//  Look up how to attach an event handler to dynamically generated content (in classwork)
-$(".gify").on("click", function() {
+
+
+    // pausing gifs on click
+//  Look up how to attach an event handler to dynamically generated content (in classwork)c
+function erikaFun() {
     var state = $(this).attr("data-state");
-console.log("data-state: " + state);
+// console.log("data-state: " + state);
     if (state === "still") {
-    
-        $(this).attr("src", "data-animate");
+        $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
       } else {
-        $(this).attr("src", "data-still");
+        $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
       }
-      console.log("clicked!");
-    });
+    //   console.log("clicked!");
+    };
 
 
                 // {/* when buttons are clicked, related gifs appear */}
-
+$( document ).ready(function() {
 $(document).on("click", ".animalbutton", function () {
                 $("#gifs").empty();
                 var favorites = $(this).text();
@@ -109,12 +111,12 @@ $(document).on("click", "#add-gif", function (event) {
 
 }); // close add new gif input
 
-// pausing gifs on click
+});
 
 
 
 
-
+$(document).on("click",".gify", erikaFun);
 
 
 
