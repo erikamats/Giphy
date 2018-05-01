@@ -5,47 +5,91 @@
     <meta charset="utf-8">
     <title>Giphy API | Erika Matsumoto</title>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
 
-    <link rel="sylesheet" type="sheet/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./assets//css/style.css">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Poppins|Rajdhani" rel="stylesheet">
+
 
 
 </head>
 
 <body>
 
-    <h1>Get to know me in Gifs!</h1>
-    <br>
-    <!--  Buttons -->
-    <div id="buttons">
-    </div>
-    <br>
 
-    <!-- gifs -->
-    <div id="gifs">
+    <div class="container">
+        <row>
+            <div class="col-sm-8">
+                <header>
+                    <p>Get to know me:</p>
+                    <p class="para">Giphy Edition <i class="far fa-star"></i></p>
+                </header>
+            </div>
+        </row>
     </div>
-<br>
+
 
     <!-- new gif input -->
-
-    <form id="gif-form">
-        <label for="fig-input">Add a new Gif </label>
-        <br>
-        <input type="text" id="gif-input">
-        <br>
-
-        <!-- Button triggers new gif topic to be added -->
-        <input id="add-gif" type="submit" value="Submit">
-    </form>
+    <div class="container" "row" id="form">
 
 
+        <div class="col-sm">
+            <!-- One of three columns -->
+            <p></p>
+        </div>
 
- <script type="text/javascript" src="assets/javascript/giphy.js"></script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript"></script>
+        <div class="col-md">
+            <!-- two of three columns -->
+            <form id="gif-form">
+                <label class="gif-input">Add a new Gif </label>
+                <br>
+                <input type="text" id="gif-input">
+
+
+                <br>
+
+                <!-- Button triggers new gif topic to be added -->
+                <input id="add-gif" type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="col-sm">
+            <!-- three of three columns -->
+        </div>
+
+    </div>
+
+
+    <br>
+    <!--  Buttons -->
+    <div id="buttons" class="container" >
+    </div>
+    <br>
+
+    <div class="container" id="images">
+        <row>
+            <div class="col-sm-8">
+                <!-- gifs -->
+
+                <div id="gifs" >               
+                     </div>
+            </div>
+        </row>
+    </div>
+
+
+
+    <script type="text/javascript" src="assets/javascript/giphy.js"></script>
+
+
 
 </body>
 

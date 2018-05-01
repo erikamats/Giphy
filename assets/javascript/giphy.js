@@ -1,5 +1,6 @@
                 // Create list of topics 
-                var topics = ["Jellyfish", "Sushi", " Wha", "Happy Dance", ];
+                var topics = ["Jellyfish", "Sushi", " Wha", "Happy Dance", "Makeup" ];
+                
 
                 // Display topic Items/Buttons
 
@@ -8,7 +9,7 @@
                     //loop through topics list to display options into buttons
                     for (var i = 0; i < topics.length; i++) {
                         var a = $("<button>");
-                        // a.addClass("favorites");
+                        a.addClass("animalbutton");
                         a.attr("data-topic", topics[i]);
                         a.text(topics[i]);
                         $("#buttons").append(a);
@@ -16,20 +17,35 @@
                     }
                 }
 
+renderButtons();
 
-// {/* when buttons are clicked, related giphs appear */}
+//  Look up how to attach an event handler to dynamically generated content (in classwork)
+$(".gify").on("click", function() {
+    var state = $(this).attr("data-state");
+console.log("data-state: " + state);
+    if (state === "still") {
+    
+        $(this).attr("src", "data-animate");
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", "data-still");
+        $(this).attr("data-state", "still");
+      }
+      console.log("clicked!");
+    });
 
-$("#buttons").on("click", function () {
-                var favorites = $(this).attr(topics[i]);
 
-                //   var apiKey ="&api_key=BI4zTvXKf4F4yPz2myd5GFtZ6Vs5RCSj"
+                // {/* when buttons are clicked, related gifs appear */}
+
+$(document).on("click", ".animalbutton", function () {
+                $("#gifs").empty();
+                var favorites = $(this).text();
+                console.log(favorites);
 
                 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
                     favorites
                     + "&api_key=BI4zTvXKf4F4yPz2myd5GFtZ6Vs5RCSj&limit=10";
 
-
-                    // https://api.giphy.com/v1/gifs/search?q=sushi&api_key=BI4zTvXKf4F4yPz2myd5GFtZ6Vs5RCSj&limit=10 //test request
 
                     //AJax Request
                     $.ajax({
@@ -37,40 +53,69 @@ $("#buttons").on("click", function () {
                         method: "GET"
                     })
 
-                    // what is done with with information after it's been received
-                    .then(function (response) {
+    // what is done with with information after it's been received
+    .then(function (response) {
                     //   console.log(response);
 
                     var results = response.data; // storing the results
 
                     //loop results
                     for (var i = 0; i < results.length; i++) {
-
-                // if results are pg,  create a new div for gifs
-                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                    
+                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     var gifDiv = $("<div class='item'>");
                     var rating = results[i].rating;
                     //display the ratings
-                    var p = $("<p>").text("Rating: " + rating);
+                    var p = $("<div class='pics'><p>").text("Rating: " + rating);
+
+                  
 
                     //add image
-                    var favoriteImage = $("<img>");
-
                     // add src to image based on result item property
-                    favoriteImage.attr("src", results[i].images.fixed_height.url);
+                    var favoriteImage = $("<img>")
+                    favoriteImage.attr("src", results[i].images.fixed_height_still.url)
+                    favoriteImage.attr("data-still", results[i].images.fixed_height_still.url)
+                    // below should be a gif
+                    favoriteImage.attr("data-animate", results[i].images.fixed_height.url)
+                    favoriteImage.addClass("gify")
+                     favoriteImage.attr("data-state","still")
+    
 
-                    //append/display image gifDiv
-                    gifDiv.append(p);
-                    gifDiv.append(favoriteImage);
-                    $("#gifs").prepend(gifDiv);
+                                  
+                    
+                        
+                        //append/display image gifDiv
+                        gifDiv.append(p);
+                        gifDiv.append(favoriteImage);
+                        $("#gifs").prepend(gifDiv);
 
-                } //closes if statement
+                     } //closes if statement: ratings
+           
+                    }; //closes for loop/array
 
-            } //closes for loop
+        }); //closes .then function
 
-        }); //closes then function
+}); //closes on click event handler of button
+//Taking input and generating a button 
 
-}); //closes on click event handler
+$(document).on("click", "#add-gif", function (event) {
+    event.preventDefault();
+    var newInput = $("#gif-input").val();
+    topics.push(newInput);
+    renderButtons();
+    // console.log(newInput);
 
-renderButtons();
+ $("#gif-input").val(""); // clearing form upon submit
+
+}); // close add new gif input
+
+// pausing gifs on click
+
+
+
+
+
+
+
+
 
